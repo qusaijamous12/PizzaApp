@@ -47,6 +47,7 @@ class LoginCubit extends Cubit<LoginState>{
           CasheHelper.SaveData(value: value.user!.uid, key: 'uid');
           uid=CasheHelper.GetData(key: 'uid');
           HomeCubit.get(context).GetUserData();
+          HomeCubit.get(context).GetPizzaData();
 
           emit(SignInSuccess());
 

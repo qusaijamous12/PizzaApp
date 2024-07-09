@@ -69,7 +69,7 @@ class PizzaScreen extends StatelessWidget {
                physics: BouncingScrollPhysics(),
                  crossAxisCount: 2,
                mainAxisSpacing: 13,
-               crossAxisSpacing: 7,
+               crossAxisSpacing: 1,
                childAspectRatio: 0.5,
                children: List.generate(HomeCubit.get(context).pizza.length, (index) => BuildPizzaScreenItem(context,HomeCubit.get(context).pizza[index])),
              ),
@@ -97,8 +97,8 @@ class PizzaScreen extends StatelessWidget {
       ),
       child: Container(
         padding: EdgeInsetsDirectional.symmetric(
-            vertical: 2.5,
-            horizontal: 5
+            vertical: 1,
+            horizontal: 2
         ),
         decoration: BoxDecoration(
             color: Colors.white,

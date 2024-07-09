@@ -8,6 +8,17 @@ class PizaaModel{
     dynamic ?pizzaId;
     dynamic price;
     dynamic ?spicy;
+    PizaaModel({
+      this.name,
+      this.description,
+      this.discount,
+      this.picture,
+      this.isVeg,
+      this.spicy,
+      this.price,
+      this.macros
+
+});
     PizaaModel.fromJosn(Map<String,dynamic> json){
       description=json['description'];
       discount=json['discount'];
@@ -20,8 +31,28 @@ class PizaaModel{
       spicy=json['spicy'];
     }
 
+    Map<String,dynamic> toMap(){
+      return {
+        'description':description,
+        'discount':discount,
+        'isVeg':isVeg,
+        'name':name,
+        'picture':picture,
+        'pizzaId':pizzaId,
+        'price':price,
+        'spicy':spicy,
+        'macros':{
+          'calories':macros!.calories,
+          'carbs':macros!.carbs,
+          'fat':macros!.fat,
+          'protien':macros!.protien
+        }
+      };
+    }
+
 
 }
+
 class Macros{
   dynamic ?calories;
   dynamic ?carbs;

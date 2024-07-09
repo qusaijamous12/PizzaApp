@@ -61,6 +61,31 @@ Widget BuildDefaultButton(context,{
     );
 
 
+Widget BuildDefaultButton2(context,{
+  required void Function()? onpress,
+  required String text
+})=>
+    Container(
+      height: 50,
+      width: double.infinity,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadiusDirectional.all(Radius.circular(20))
+
+      ),
+      child: MaterialButton(
+        onPressed:onpress,
+        child: AutoSizeText(
+          '${text.toUpperCase()}',
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+              color: Colors.black
+          ),
+        ),
+
+      ),
+    );
+
+
 
 Widget BuildDefaultTextButton(context,{
   required void Function()? onpress,
