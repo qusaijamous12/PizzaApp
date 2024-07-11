@@ -8,6 +8,7 @@ class PizaaModel{
     dynamic ?pizzaId;
     dynamic price;
     dynamic ?spicy;
+    dynamic idDelete;
     PizaaModel({
       this.name,
       this.description,
@@ -16,7 +17,9 @@ class PizaaModel{
       this.isVeg,
       this.spicy,
       this.price,
-      this.macros
+      this.macros,
+      this.pizzaId,
+      this.idDelete
 
 });
     PizaaModel.fromJosn(Map<String,dynamic> json){
@@ -29,6 +32,8 @@ class PizaaModel{
       pizzaId=json['pizzaId'];
       price=json['price'];
       spicy=json['spicy'];
+      idDelete=json['idDelete'];
+
     }
 
     Map<String,dynamic> toMap(){
@@ -41,6 +46,7 @@ class PizaaModel{
         'pizzaId':pizzaId,
         'price':price,
         'spicy':spicy,
+        'idDelete':idDelete,
         'macros':{
           'calories':macros!.calories,
           'carbs':macros!.carbs,

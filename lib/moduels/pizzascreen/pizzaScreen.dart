@@ -204,17 +204,25 @@ class PizzaScreen extends StatelessWidget {
                       ),
                     ),
                     Spacer(),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadiusDirectional.all(Radius.circular(10))
-                      ),
-                      child: IconButton(
+                    // Container(
+                    //   decoration: BoxDecoration(
+                    //       color: Colors.black,
+                    //       borderRadius: BorderRadiusDirectional.all(Radius.circular(10))
+                    //   ),
+                    //   child: IconButton(
+                    //     onPressed: (){},
+                    //     icon: Icon(
+                    //       Icons.add,
+                    //       color: Colors.white,
+                    //     ),
+                    //   ),
+                    // )
+                    FloatingActionButton(
+                      backgroundColor: Colors.black,
                         onPressed: (){},
-                        icon: Icon(
-                          Icons.add,
-                          color: Colors.white,
-                        ),
+                      child: Icon(
+                        Icons.add,
+                        color: Colors.white,
                       ),
                     )
                   ],

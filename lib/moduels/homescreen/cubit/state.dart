@@ -28,3 +28,11 @@ class selectImageSuccess extends HomeState{}
 
 class selectImageError extends HomeState{}
 
+class LoadingAddPizzaState extends HomeState{}
+
+class PizzaImageNullState extends HomeState{}
+
+class DeletePizzaItemSuccessState extends HomeState{}
+
+class DeletePizzaItemErrorState extends HomeState{}
+

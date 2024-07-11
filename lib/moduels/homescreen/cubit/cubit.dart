@@ -4,7 +4,9 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pizzadelivery/model/loginModel.dart';
 import 'package:pizzadelivery/moduels/homescreen/cubit/state.dart';
@@ -107,11 +109,14 @@ class HomeCubit extends Cubit<HomeState>{
     dynamic discont,
     required bool IsVeg,
     required dynamic IsSpicy,
-    required Map<String,dynamic> macros
+    required Map<String,dynamic> macros,
+     String ?id,
+    dynamic IdDelete,
 }){
     FirebaseStorage.instance.ref().child('pizza/${Uri.file(pizzaImage!.path).pathSegments.last}').putFile(pizzaImage!).then((p0) {
+      emit(LoadingAddPizzaState());
         p0.ref.getDownloadURL().then((value) {
-          emit(UploadPizzaImageSuccessState());
+          emit(LoadingAddPizzaState());
           PizaaModel pizaaModel=PizaaModel(
             name:name,
             description: descrption,
@@ -120,11 +125,32 @@ class HomeCubit extends Cubit<HomeState>{
             isVeg: IsVeg,
             spicy: IsSpicy,
             picture: value,
+            pizzaId: id,
+            idDelete: IdDelete,
             macros:Macros.fromJson(macros)
 
           );
           FirebaseFirestore.instance.collection('pizza').add(pizaaModel.toMap()).then((value) {
+            FirebaseFirestore.instance.collection('pizza').doc(value.id).update({
+              'pizzaId':value.id
+            }).then((value) =>{
+
+            }).catchError((error){
+              print(error.toString());
+
+            });
+            emit(PizzaImageNullState());
+            emit(UploadPizzaImageSuccessState());
             emit(AddPizzaSuccessState());
+            Fluttertoast.showToast(
+                msg: "Add Succfully",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                timeInSecForIosWeb: 1,
+                backgroundColor: Colors.blue.shade800,
+                textColor: Colors.white,
+                fontSize: 16.0
+            );
 
 
           }).catchError((error){
@@ -145,6 +171,13 @@ class HomeCubit extends Cubit<HomeState>{
 
     });
   }
+
+  void PizzaImageNull(){
+    pizzaImage=null;
+
+  }
+
+
 
   
 }

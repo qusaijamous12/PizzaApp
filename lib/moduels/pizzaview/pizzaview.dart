@@ -83,7 +83,6 @@ class PizzaView extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)
                   ),
-
                   child: Padding(
                     padding: EdgeInsetsDirectional.all(15),
                     child: CircleAvatar(
@@ -299,7 +298,7 @@ class PizzaView extends StatelessWidget {
                                           height: 3,
                                         ),
                                         Text(
-                                            '${macros!.calories} calories'
+                                            '${macros!.carbs} carbs'
                                         )
 
                                       ],
